@@ -1,1 +1,1 @@
-export * from './lib/shared-catalog';
+export * from './lib/models';
