@@ -1,0 +1,19 @@
+<button
+  class="ts-btn"
+  [class.ts-btn--primary]="variant === 'primary'"
+  [class.ts-btn--secondary]="variant === 'secondary'"
+  [class.ts-btn--ghost]="variant === 'ghost'"
+  [class.ts-btn--sm]="size === 'sm'"
+  [class.ts-btn--md]="size === 'md'"
+  [class.ts-btn--lg]="size === 'lg'"
+  [class.ts-btn--loading]="loading"
+  [disabled]="disabled || loading"
+  [attr.aria-busy]="loading || null"
+  type="button"
+  (click)="handleClick()"
+>
+  @if (loading) {
+    <span class="ts-btn__spinner" aria-hidden="true"></span>
+  }
+  <ng-content />
+</button>

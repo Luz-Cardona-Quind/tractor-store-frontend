@@ -1,0 +1,104 @@
+:host {
+  display: inline-flex;
+}
+
+.ts-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  background-color: var(--button-bg);
+  color: var(--button-color);
+  border-radius: var(--button-radius);
+  padding: var(--button-padding-y) var(--button-padding-x);
+  font-family: var(--button-font-family);
+  font-size: var(--button-font-size);
+  font-weight: var(--button-font-weight);
+  line-height: var(--leading-tight);
+  border: var(--button-border-width) solid var(--button-border-color);
+  cursor: pointer;
+  white-space: nowrap;
+  transition:
+    background-color var(--button-transition),
+    color var(--button-transition),
+    border-color var(--button-transition);
+
+  &:hover:not(:disabled) {
+    background-color: var(--button-bg-hover);
+  }
+
+  &:active:not(:disabled) {
+    background-color: var(--button-bg-active);
+  }
+
+  &:focus-visible {
+    outline: none;
+    box-shadow: var(--focus-ring);
+  }
+
+  // ── Variants ──────────────────────────────────────────────────────────────
+
+  &--secondary {
+    --button-bg:        var(--color-secondary);
+    --button-bg-hover:  var(--color-secondary-hover);
+    --button-bg-active: var(--color-neutral-800);
+    --button-color:     var(--color-on-secondary);
+  }
+
+  &--ghost {
+    --button-bg:           transparent;
+    --button-bg-hover:     var(--color-primary-subtle);
+    --button-bg-active:    var(--color-primary-subtle);
+    --button-color:        var(--color-primary);
+    --button-border-color: var(--color-primary);
+  }
+
+  // ── Sizes ─────────────────────────────────────────────────────────────────
+
+  &--sm {
+    --button-padding-x: var(--button-padding-x-sm);
+    --button-padding-y: var(--button-padding-y-sm);
+    --button-font-size: var(--text-xs);
+  }
+
+  &--lg {
+    --button-padding-x: var(--button-padding-x-lg);
+    --button-padding-y: var(--button-padding-y-lg);
+    --button-font-size: var(--text-lg);
+  }
+
+  // ── States ────────────────────────────────────────────────────────────────
+
+  &--loading {
+    cursor: wait;
+  }
+
+  &:disabled {
+    --button-bg:           var(--button-bg-disabled);
+    --button-color:        var(--button-color-disabled);
+    --button-border-color: transparent;
+    cursor: not-allowed;
+
+    &:hover {
+      background-color: var(--button-bg-disabled);
+    }
+  }
+
+  // ── Spinner ───────────────────────────────────────────────────────────────
+
+  &__spinner {
+    width: 1em;
+    height: 1em;
+    border: 2px solid currentColor;
+    border-top-color: transparent;
+    border-radius: 50%;
+    animation: ts-spin 0.6s linear infinite;
+    flex-shrink: 0;
+  }
+}
+
+@keyframes ts-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
