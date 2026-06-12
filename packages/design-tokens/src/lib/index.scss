@@ -1,0 +1,8 @@
+// Design token layers — import in this order to respect the cascade.
+// 1. Primitives  — raw values (colors, sizes, spacing)
+// 2. Semantics   — role-based aliases
+// 3. Components  — per-component overrides (added in US-006)
+
+@use 'primitives';
+@use 'semantics';
+@use 'components';

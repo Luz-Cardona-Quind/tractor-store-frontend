@@ -1,0 +1,105 @@
+// Component design tokens — component layer
+// Each token is an override point: consumers set these on the host element to
+// restyle a component without touching its internals.
+// All values reference semantic tokens; never reference primitives directly.
+
+:root {
+  // ─── TsButton ─────────────────────────────────────────────────────────────
+
+  // Background — primary variant (default)
+  --button-bg:          var(--color-primary);
+  --button-bg-hover:    var(--color-primary-hover);
+  --button-bg-active:   var(--color-primary-active);
+  --button-bg-disabled: var(--color-surface-overlay);
+
+  // Text color
+  --button-color:          var(--color-on-primary);
+  --button-color-disabled: var(--color-text-disabled);
+
+  // Shape
+  --button-radius: var(--radius-md);
+
+  // Padding — md (default)
+  --button-padding-x: var(--space-4);
+  --button-padding-y: var(--space-2);
+
+  // Padding — sm
+  --button-padding-x-sm: var(--space-3);
+  --button-padding-y-sm: var(--space-1);
+
+  // Padding — lg
+  --button-padding-x-lg: var(--space-6);
+  --button-padding-y-lg: var(--space-3);
+
+  // Typography
+  --button-font-size:   var(--text-label);
+  --button-font-weight: var(--font-semibold);
+  --button-font-family: var(--font-body);
+
+  // Border (visible on secondary/ghost variants)
+  --button-border-width: var(--border-1);
+  --button-border-color: transparent;
+
+  // Motion
+  --button-transition: var(--transition-fast);
+
+  // ─── TsProductCard ────────────────────────────────────────────────────────
+
+  --product-card-bg:            var(--color-surface-elevated);
+  --product-card-bg-hover:      var(--color-surface-overlay);
+  --product-card-radius:        var(--radius-lg);
+  --product-card-shadow:        var(--shadow-card);
+  --product-card-shadow-hover:  var(--shadow-panel);
+  --product-card-border-width:  var(--border-1);
+  --product-card-border-color:  var(--color-border);
+  --product-card-padding:       var(--space-inset-lg);
+  --product-card-transition:    var(--transition-default);
+
+  // Typography within the card
+  --product-card-title-size:    var(--text-heading-sm);
+  --product-card-title-weight:  var(--font-semibold);
+  --product-card-price-size:    var(--text-body);
+  --product-card-price-weight:  var(--font-bold);
+  --product-card-price-color:   var(--color-primary);
+
+  // ─── TsVariantOption ──────────────────────────────────────────────────────
+
+  --variant-option-bg:              var(--color-surface-elevated);
+  --variant-option-bg-selected:     var(--color-primary-subtle);
+  --variant-option-bg-disabled:     var(--color-surface-overlay);
+  --variant-option-border:          var(--border-1);
+  --variant-option-border-color:    var(--color-border);
+  --variant-option-border-selected: var(--color-primary);
+  --variant-option-color:           var(--color-text);
+  --variant-option-color-selected:  var(--color-primary);
+  --variant-option-color-disabled:  var(--color-text-disabled);
+  --variant-option-radius:          var(--radius-sm);
+  --variant-option-padding-x:       var(--space-3);
+  --variant-option-padding-y:       var(--space-2);
+
+  // ─── TsCartCounter ────────────────────────────────────────────────────────
+
+  --cart-counter-bg:          var(--color-primary);
+  --cart-counter-color:       var(--color-on-primary);
+  --cart-counter-size:        var(--space-6);
+  --cart-counter-font-size:   var(--text-xs);
+  --cart-counter-font-weight: var(--font-bold);
+  --cart-counter-radius:      var(--radius-full);
+
+  // ─── TsMiniCart ───────────────────────────────────────────────────────────
+
+  --mini-cart-bg:      var(--color-surface);
+  --mini-cart-border:  var(--color-border);
+  --mini-cart-width:   320px;
+  --mini-cart-shadow:  var(--shadow-panel);
+  --mini-cart-radius:  var(--radius-lg);
+  --mini-cart-padding: var(--space-inset-lg);
+
+  // Item row within the mini-cart
+  --mini-cart-item-border: var(--color-border);
+  --mini-cart-item-gap:    var(--space-element);
+
+  // Highlight animation (triggered on cart-item-added event)
+  --mini-cart-highlight-color: var(--color-primary-subtle);
+  --mini-cart-highlight-duration: var(--duration-slow);
+}
