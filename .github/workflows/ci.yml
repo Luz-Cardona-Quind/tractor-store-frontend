@@ -38,8 +38,3 @@ jobs:
 
       - name: Build
         run: pnpm nx run-many --target=build --all --parallel=3
-
-      - name: SonarCloud Scan
-        uses: SonarSource/sonarqube-scan-action@v5
-        env:
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}

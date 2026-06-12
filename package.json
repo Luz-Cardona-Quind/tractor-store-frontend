@@ -4,6 +4,10 @@
   "license": "MIT",
   "scripts": {
     "dev": "nx run-many --target=serve --all",
+    "dev:shell": "nx serve shell",
+    "dev:explore": "nx serve mfe-explore",
+    "dev:decide": "nx serve mfe-decide",
+    "dev:checkout": "nx serve mfe-checkout",
     "build": "nx run-many --target=build --all",
     "test": "nx run-many --target=test --all",
     "lint": "nx run-many --target=lint --all",
