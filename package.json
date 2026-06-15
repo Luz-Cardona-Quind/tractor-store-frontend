@@ -13,6 +13,8 @@
     "lint": "nx run-many --target=lint --all",
     "affected:test": "nx affected --target=test",
     "affected:build": "nx affected --target=build",
+    "storybook": "nx run ts-design-system:storybook",
+    "build:storybook": "nx run ts-design-system:build-storybook",
     "graph": "nx graph"
   },
   "devDependencies": {
@@ -30,9 +32,14 @@
     "@nx/jest": "22.7.5",
     "@nx/js": "22.7.5",
     "@nx/playwright": "22.7.5",
+    "@nx/storybook": "^22.7.5",
     "@nx/web": "22.7.5",
     "@playwright/test": "^1.36.0",
     "@schematics/angular": "~21.2.0",
+    "@storybook/addon-essentials": "^8.6.14",
+    "@storybook/addon-interactions": "^8.6.14",
+    "@storybook/angular": "^8.6.18",
+    "@storybook/test": "^8.6.15",
     "@swc-node/register": "~1.11.1",
     "@swc/core": "~1.15.5",
     "@swc/helpers": "~0.5.18",
@@ -68,6 +75,7 @@
     "@angular/platform-browser": "~21.2.0",
     "@angular/platform-browser-dynamic": "~21.2.0",
     "@angular/router": "~21.2.0",
-    "rxjs": "~7.8.0"
+    "rxjs": "~7.8.0",
+    "zone.js": "^0.16.2"
   }
 }

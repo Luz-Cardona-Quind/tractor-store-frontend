@@ -16,6 +16,23 @@
     },
     "lint": {
       "executor": "@nx/eslint:lint"
+    },
+    "storybook": {
+      "executor": "@storybook/angular:start-storybook",
+      "options": {
+        "port": 6006,
+        "configDir": "packages/ts-design-system/.storybook",
+        "compodoc": false
+      }
+    },
+    "build-storybook": {
+      "executor": "@storybook/angular:build-storybook",
+      "outputs": ["{options.outputDir}"],
+      "options": {
+        "outputDir": "dist/storybook/ts-design-system",
+        "configDir": "packages/ts-design-system/.storybook",
+        "compodoc": false
+      }
     }
   }
 }
