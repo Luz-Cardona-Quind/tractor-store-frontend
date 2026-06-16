@@ -62,6 +62,11 @@ describe('TsProductCardComponent', () => {
     expect(img.getAttribute('src')).toBe('');
   });
 
+  it('should return empty string for imageUrl when product is not initialized', () => {
+    (component as any).product = undefined;
+    expect(component.imageUrl).toBe('');
+  });
+
   it('should set fallback src on image error', () => {
     const img = document.createElement('img');
     const event = new Event('error');

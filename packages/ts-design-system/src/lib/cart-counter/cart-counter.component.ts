@@ -9,7 +9,7 @@ import {
 } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { fromEvent } from 'rxjs';
-import { CART_EVENTS, isCartUpdatedEvent } from 'shared-catalog';
+import { CART_EVENTS } from 'shared-catalog';
 import type { CartUpdatedEvent } from 'shared-catalog';
 
 @Component({
@@ -29,9 +29,7 @@ export class TsCartCounterComponent {
     fromEvent<CartUpdatedEvent>(document, CART_EVENTS.UPDATED)
       .pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe((event) => {
-        if (isCartUpdatedEvent(event)) {
-          this.count.set(event.detail.items.length);
-        }
+        this.count.set(event.detail.items.length);
       });
   }
 
