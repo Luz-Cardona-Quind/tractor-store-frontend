@@ -1,0 +1,35 @@
+@if (loading) {
+  <div class="ts-product-card ts-product-card--skeleton" aria-busy="true" aria-label="Cargando producto">
+    <div class="ts-product-card__image-wrapper ts-product-card__skeleton-block"></div>
+    <div class="ts-product-card__body">
+      <div class="ts-product-card__skeleton-line ts-product-card__skeleton-line--title"></div>
+      <div class="ts-product-card__skeleton-line ts-product-card__skeleton-line--price"></div>
+    </div>
+  </div>
+} @else {
+  <article class="ts-product-card">
+    <button
+      class="ts-product-card__overlay"
+      type="button"
+      (click)="handleClick()"
+      [attr.aria-label]="product.name"
+    ></button>
+    <div class="ts-product-card__image-wrapper">
+      <img
+        class="ts-product-card__image"
+        [src]="imageUrl"
+        [alt]="product.name"
+        loading="lazy"
+        (error)="handleImageError($event)"
+      />
+    </div>
+    <div class="ts-product-card__body">
+      <h3 class="ts-product-card__title">{{ product.name }}</h3>
+      @if (showPrice) {
+        <p class="ts-product-card__price">
+          {{ product.price | currency:'USD':'symbol':'1.0-0' }}
+        </p>
+      }
+    </div>
+  </article>
+}

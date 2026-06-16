@@ -22,7 +22,11 @@
       "options": {
         "port": 6006,
         "configDir": "packages/ts-design-system/.storybook",
-        "compodoc": false
+        "compodoc": false,
+        "styles": ["packages/design-tokens/src/lib/index.scss"],
+        "stylePreprocessorOptions": {
+          "includePaths": ["packages/design-tokens/src/lib"]
+        }
       }
     },
     "build-storybook": {
@@ -31,7 +35,11 @@
       "options": {
         "outputDir": "dist/storybook/ts-design-system",
         "configDir": "packages/ts-design-system/.storybook",
-        "compodoc": false
+        "compodoc": false,
+        "styles": ["packages/design-tokens/src/lib/index.scss"],
+        "stylePreprocessorOptions": {
+          "includePaths": ["packages/design-tokens/src/lib"]
+        }
       }
     }
   }
