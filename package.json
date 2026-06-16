@@ -13,6 +13,8 @@
     "lint": "nx run-many --target=lint --all",
     "affected:test": "nx affected --target=test",
     "affected:build": "nx affected --target=build",
+    "build:elements": "nx run ts-design-system:build-elements",
+    "build:elements:prod": "nx run ts-design-system:build-elements:production",
     "storybook": "nx run ts-design-system:storybook",
     "build:storybook": "nx run ts-design-system:build-storybook",
     "graph": "nx graph"

@@ -6,6 +6,29 @@
   "projectType": "library",
   "tags": ["scope:shared"],
   "targets": {
+    "build-elements": {
+      "executor": "@angular/build:application",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/ts-design-system/elements",
+        "browser": "packages/ts-design-system/src/elements.ts",
+        "tsConfig": "packages/ts-design-system/tsconfig.lib.json",
+        "styles": ["packages/design-tokens/src/lib/index.scss"],
+        "stylePreprocessorOptions": {
+          "includePaths": ["packages/design-tokens/src/lib"]
+        },
+        "index": false,
+        "optimization": false,
+        "sourceMap": true
+      },
+      "configurations": {
+        "production": {
+          "optimization": true,
+          "sourceMap": false
+        }
+      },
+      "defaultConfiguration": "production"
+    },
     "test": {
       "executor": "@nx/jest:jest",
       "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
