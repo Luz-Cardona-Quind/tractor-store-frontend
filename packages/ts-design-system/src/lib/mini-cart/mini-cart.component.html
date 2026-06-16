@@ -1,0 +1,45 @@
+<div class="ts-mini-cart">
+  <header class="ts-mini-cart__header">
+    <h2 class="ts-mini-cart__title">Carrito</h2>
+    <span class="ts-mini-cart__count">
+      {{ items.length }} {{ items.length === 1 ? 'artículo' : 'artículos' }}
+    </span>
+  </header>
+
+  @if (isEmpty) {
+    <div class="ts-mini-cart__empty">
+      <p class="ts-mini-cart__empty-text">Tu carrito está vacío</p>
+    </div>
+  } @else {
+    <ul class="ts-mini-cart__list">
+      @for (item of items; track item.sku) {
+        <li class="ts-mini-cart__item">
+          <div class="ts-mini-cart__item-details">
+            <span class="ts-mini-cart__item-name">{{ item.productName }}</span>
+            <span class="ts-mini-cart__item-variant">{{ item.color }} / {{ item.size }}</span>
+          </div>
+          <div class="ts-mini-cart__item-actions">
+            <span class="ts-mini-cart__item-price">{{ item.price * item.quantity | currency }}</span>
+            <button
+              type="button"
+              class="ts-mini-cart__item-remove"
+              [attr.aria-label]="'Eliminar ' + item.productName"
+              (click)="handleRemoveItem(item.sku)">
+              ✕
+            </button>
+          </div>
+        </li>
+      }
+    </ul>
+
+    <footer class="ts-mini-cart__footer">
+      <div class="ts-mini-cart__total">
+        <span class="ts-mini-cart__total-label">Total</span>
+        <span class="ts-mini-cart__total-amount">{{ total | currency }}</span>
+      </div>
+      <ts-button variant="primary" size="md" (clicked)="handleCheckout()">
+        Ir al carrito
+      </ts-button>
+    </footer>
+  }
+</div>
