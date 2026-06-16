@@ -1,0 +1,9 @@
+@if (count() > 0) {
+  <span
+    class="ts-cart-counter"
+    aria-live="polite"
+    aria-atomic="true"
+    [attr.aria-label]="count() + (count() === 1 ? ' artículo en el carrito' : ' artículos en el carrito')">
+    {{ count() }}
+  </span>
+}

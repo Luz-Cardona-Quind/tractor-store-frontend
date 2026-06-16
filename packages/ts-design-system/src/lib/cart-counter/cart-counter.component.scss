@@ -1,0 +1,20 @@
+:host {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ts-cart-counter {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: var(--cart-counter-size);
+  height: var(--cart-counter-size);
+  padding: 0 var(--space-1);
+  background-color: var(--cart-counter-bg);
+  color: var(--cart-counter-color);
+  border-radius: var(--cart-counter-radius);
+  font-size: var(--cart-counter-font-size);
+  font-weight: var(--cart-counter-font-weight);
+  line-height: 1;
+}
