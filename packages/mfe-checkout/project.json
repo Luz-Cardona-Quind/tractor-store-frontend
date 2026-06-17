@@ -7,11 +7,12 @@
   "tags": ["scope:checkout"],
   "targets": {
     "build": {
-      "executor": "@angular/build:application",
+      "executor": "@nx/angular:webpack-browser",
       "outputs": ["{options.outputPath}"],
       "options": {
         "outputPath": "dist/packages/mfe-checkout",
-        "browser": "packages/mfe-checkout/src/main.ts",
+        "index": "packages/mfe-checkout/src/index.html",
+        "main": "packages/mfe-checkout/src/main.ts",
         "tsConfig": "packages/mfe-checkout/tsconfig.app.json",
         "inlineStyleLanguage": "scss",
         "assets": [
@@ -20,7 +21,10 @@
             "input": "packages/mfe-checkout/public"
           }
         ],
-        "styles": ["packages/mfe-checkout/src/styles.scss"]
+        "styles": ["packages/mfe-checkout/src/styles.scss"],
+        "customWebpackConfig": {
+          "path": "packages/mfe-checkout/webpack.config.ts"
+        }
       },
       "configurations": {
         "production": {
@@ -36,7 +40,10 @@
               "maximumError": "8kb"
             }
           ],
-          "outputHashing": "all"
+          "outputHashing": "all",
+          "customWebpackConfig": {
+            "path": "packages/mfe-checkout/webpack.prod.config.ts"
+          }
         },
         "development": {
           "optimization": false,
@@ -48,9 +55,10 @@
     },
     "serve": {
       "continuous": true,
-      "executor": "@angular/build:dev-server",
+      "executor": "@nx/angular:dev-server",
       "options": {
-        "port": 4203
+        "port": 4203,
+        "publicHost": "http://localhost:4203"
       },
       "configurations": {
         "production": {

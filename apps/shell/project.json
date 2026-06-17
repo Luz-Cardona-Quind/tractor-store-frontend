@@ -7,11 +7,12 @@
   "tags": ["scope:shell"],
   "targets": {
     "build": {
-      "executor": "@angular/build:application",
+      "executor": "@nx/angular:webpack-browser",
       "outputs": ["{options.outputPath}"],
       "options": {
         "outputPath": "dist/apps/shell",
-        "browser": "apps/shell/src/main.ts",
+        "index": "apps/shell/src/index.html",
+        "main": "apps/shell/src/main.ts",
         "tsConfig": "apps/shell/tsconfig.app.json",
         "inlineStyleLanguage": "scss",
         "assets": [
@@ -20,7 +21,10 @@
             "input": "apps/shell/public"
           }
         ],
-        "styles": ["apps/shell/src/styles.scss"]
+        "styles": ["apps/shell/src/styles.scss"],
+        "customWebpackConfig": {
+          "path": "apps/shell/webpack.config.ts"
+        }
       },
       "configurations": {
         "production": {
@@ -36,7 +40,10 @@
               "maximumError": "8kb"
             }
           ],
-          "outputHashing": "all"
+          "outputHashing": "all",
+          "customWebpackConfig": {
+            "path": "apps/shell/webpack.prod.config.ts"
+          }
         },
         "development": {
           "optimization": false,
@@ -48,9 +55,24 @@
     },
     "serve": {
       "continuous": true,
-      "executor": "@angular/build:dev-server",
+      "executor": "@nx/angular:module-federation-dev-server",
       "options": {
-        "port": 4200
+        "port": 4200,
+        "publicHost": "http://localhost:4200",
+        "devRemotes": [
+          {
+            "remoteName": "mfe-explore",
+            "configuration": "development"
+          },
+          {
+            "remoteName": "mfe-decide",
+            "configuration": "development"
+          },
+          {
+            "remoteName": "mfe-checkout",
+            "configuration": "development"
+          }
+        ]
       },
       "configurations": {
         "production": {

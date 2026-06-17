@@ -2,11 +2,9 @@ import { Component } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
 @Component({
+  standalone: true,
+  selector: 'decide-entry',
+  template: '<router-outlet />',
   imports: [RouterModule],
-  selector: 'app-root',
-  templateUrl: './app.html',
-  styleUrl: './app.scss',
 })
-export class App {
-  protected title = 'shell';
-}
+export class RemoteEntryComponent {}
