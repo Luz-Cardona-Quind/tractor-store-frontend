@@ -37,6 +37,9 @@ export interface CategoryResponse {
 /** GET /explore/api/stores */
 export type StoresResponse = Store[];
 
+/** GET /explore/api/recommendations?productId={productId} */
+export type RecommendationsResponse = ProductSummary[];
+
 // ─── Team Decide ──────────────────────────────────────────────────────────────
 
 /** GET /decide/api/product/:id */

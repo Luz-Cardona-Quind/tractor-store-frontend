@@ -21,6 +21,8 @@ const SKELETON_COUNT = 4;
 export class RecommendationsComponent {
   @Input() products: ProductSummary[] = [];
   @Input() loading = false;
+  /** Id del producto actual, usado por mfe-decide para mostrar recomendaciones contextuales. */
+  @Input() productId?: string;
 
   /** Emite el id del producto seleccionado. */
   @Output() productSelected = new EventEmitter<string>();

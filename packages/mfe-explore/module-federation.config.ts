@@ -9,6 +9,8 @@ const config: ModuleFederationConfig = {
       'packages/mfe-explore/src/app/components/header/header.component.ts',
     './Footer':
       'packages/mfe-explore/src/app/components/footer/footer.component.ts',
+    './Recommendations':
+      'packages/mfe-explore/src/app/components/recommendations/recommendations.component.ts',
   },
 };
 

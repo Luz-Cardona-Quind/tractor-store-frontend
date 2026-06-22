@@ -6,9 +6,9 @@
     </a>
 
     <nav class="explore-header__nav" aria-label="Navegación principal">
-      <a routerLink="/" class="explore-header__nav-link">Inicio</a>
-      <a routerLink="/category/campo" class="explore-header__nav-link">Categorías</a>
-      <a routerLink="/stores" class="explore-header__nav-link">Tiendas</a>
+      <a routerLink="/" routerLinkActive="explore-header__nav-link--active" [routerLinkActiveOptions]="{ exact: true }" class="explore-header__nav-link">Inicio</a>
+      <a routerLink="/category/campo" routerLinkActive="explore-header__nav-link--active" class="explore-header__nav-link">Categorías</a>
+      <a routerLink="/stores" routerLinkActive="explore-header__nav-link--active" class="explore-header__nav-link">Tiendas</a>
     </nav>
 
     <explore-cart-button />

@@ -106,3 +106,21 @@ export function getMockCategoryResponse(slug: string): CategoryResponse | null {
   if (!category || !products) return null;
   return { category, products, filters: [], total: products.length };
 }
+
+/**
+ * Devuelve el listado de tiendas para el endpoint GET /stores.
+ * @returns Array de tiendas físicas disponibles.
+ */
+export function getMockStoresResponse(): Store[] {
+  return MOCK_STORES;
+}
+
+/**
+ * Devuelve recomendaciones de productos, excluyendo el producto actual si se proporciona.
+ * @param productId Id del producto actual a excluir de las recomendaciones.
+ * @returns Array de productos recomendados.
+ */
+export function getMockRecommendationsResponse(productId?: string): ProductSummary[] {
+  if (!productId) return MOCK_RECOMMENDATIONS;
+  return MOCK_RECOMMENDATIONS.filter((p) => p.id !== productId);
+}

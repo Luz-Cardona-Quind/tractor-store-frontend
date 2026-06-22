@@ -48,4 +48,10 @@
   &:hover {
     color: var(--color-primary);
   }
+
+  &--active {
+    color: var(--color-primary);
+    font-weight: var(--font-semibold);
+    border-bottom: 2px solid var(--color-primary);
+  }
 }

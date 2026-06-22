@@ -36,4 +36,9 @@ describe('HeaderComponent', () => {
     const cartBtn = fixture.nativeElement.querySelector('explore-cart-button');
     expect(cartBtn).toBeTruthy();
   });
+
+  it('should render a nav link to home (/)', () => {
+    const homeLink = fixture.nativeElement.querySelector('.explore-header__nav-link[href="/"]');
+    expect(homeLink).toBeTruthy();
+  });
 });
