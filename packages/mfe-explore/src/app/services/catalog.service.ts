@@ -2,7 +2,7 @@ import { Injectable, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { EXPLORE_API_URL } from 'shared-catalog';
-import type { HomeResponse } from 'shared-catalog';
+import type { CategoryResponse, HomeResponse } from 'shared-catalog';
 
 /**
  * Servicio HTTP del equipo Explore.
@@ -19,5 +19,14 @@ export class CatalogService {
    */
   getHome(): Observable<HomeResponse> {
     return this.http.get<HomeResponse>(`${this.apiUrl}/home`);
+  }
+
+  /**
+   * Obtiene los productos y metadatos de una categoría.
+   * @param slug Identificador único de la categoría.
+   * @returns Observable con la respuesta tipada del endpoint GET /category/:slug.
+   */
+  getCategory(slug: string): Observable<CategoryResponse> {
+    return this.http.get<CategoryResponse>(`${this.apiUrl}/category/${slug}`);
   }
 }

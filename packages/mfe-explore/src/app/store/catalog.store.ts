@@ -1,10 +1,17 @@
 import { Injectable, signal } from '@angular/core';
-import type { Category, ProductSummary, Store } from 'shared-catalog';
+import type { Category, FilterState, ProductSummary, Store } from 'shared-catalog';
 
 export interface CatalogState {
+  // Home
   categories: Category[];
   recommendations: ProductSummary[];
   stores: Store[];
+  // Category page
+  activeCategory: Category | null;
+  categoryProducts: ProductSummary[];
+  activeFilters: FilterState;
+  notFound: boolean;
+  // UI
   loading: boolean;
   error: string | null;
 }
@@ -13,6 +20,10 @@ const INITIAL_STATE: CatalogState = {
   categories: [],
   recommendations: [],
   stores: [],
+  activeCategory: null,
+  categoryProducts: [],
+  activeFilters: {},
+  notFound: false,
   loading: false,
   error: null,
 };

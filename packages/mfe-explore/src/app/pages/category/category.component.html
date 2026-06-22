@@ -1,0 +1,68 @@
+<div class="category">
+
+  @if (notFound()) {
+    <div class="category__not-found" role="alert">
+      <p class="category__not-found-text">Categoría no encontrada</p>
+    </div>
+  } @else if (error()) {
+    <div class="category__error" role="alert" aria-live="assertive">
+      <p class="category__error-text">{{ error() }}</p>
+    </div>
+  } @else {
+    <header class="category__header">
+      <h1 class="category__title">
+        {{ activeCategory()?.name ?? '&nbsp;' }}
+      </h1>
+
+      <div class="category__filters">
+        <label class="category__filter-label" for="max-price-select">
+          Precio máximo
+        </label>
+        <select
+          id="max-price-select"
+          class="category__filter-select"
+          [value]="currentMaxPrice() ?? ''"
+          (change)="onMaxPriceChange($event)"
+          [disabled]="isLoading()"
+        >
+          @for (preset of pricePresets; track preset.value) {
+            <option [value]="preset.value ?? ''">{{ preset.label }}</option>
+          }
+        </select>
+
+        @if (activeFilterCount() > 0) {
+          <button
+            class="category__clear-filters"
+            type="button"
+            (click)="clearFilters()"
+          >
+            Limpiar filtros
+          </button>
+        }
+      </div>
+    </header>
+
+    <div class="category__grid">
+      @if (isLoading()) {
+        @for (i of skeletons; track i) {
+          <ts-product-card
+            [product]="{ id: '', name: '', category: '', price: 0, images: [] }"
+            [showPrice]="true"
+            [loading]="true"
+          />
+        }
+      } @else if (filteredProducts().length === 0) {
+        <p class="category__empty">No hay productos para los filtros aplicados.</p>
+      } @else {
+        @for (product of filteredProducts(); track product.id) {
+          <ts-product-card
+            [product]="product"
+            [showPrice]="true"
+            (productSelected)="navigateToProduct($event)"
+          />
+        }
+      }
+    </div>
+  }
+
+</div>

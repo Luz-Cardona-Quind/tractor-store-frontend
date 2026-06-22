@@ -1,0 +1,110 @@
+.category {
+  padding: var(--space-section) var(--space-container);
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
+.category__header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-element);
+  margin-bottom: var(--space-section);
+}
+
+.category__title {
+  font-size: var(--text-heading-lg);
+  font-weight: var(--font-semibold);
+  color: var(--color-text);
+  margin: 0;
+  flex: 1;
+  min-width: 200px;
+}
+
+.category__filters {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+}
+
+.category__filter-label {
+  font-size: var(--text-body);
+  color: var(--color-text-muted);
+  white-space: nowrap;
+}
+
+.category__filter-select {
+  padding: var(--space-2) var(--space-4);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  background: var(--color-surface);
+  color: var(--color-text);
+  font-size: var(--text-body);
+  cursor: pointer;
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+}
+
+.category__clear-filters {
+  padding: var(--space-2) var(--space-4);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  background: transparent;
+  color: var(--color-text-muted);
+  font-size: var(--text-body);
+  cursor: pointer;
+  white-space: nowrap;
+
+  &:hover {
+    background: var(--color-surface);
+    color: var(--color-text);
+  }
+}
+
+.category__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: var(--space-element);
+}
+
+.category__empty {
+  grid-column: 1 / -1;
+  text-align: center;
+  color: var(--color-text-muted);
+  font-size: var(--text-body);
+  padding: var(--space-section) 0;
+}
+
+.category__not-found,
+.category__error {
+  padding: var(--space-element);
+  border-radius: var(--radius-md);
+  margin-bottom: var(--space-section);
+}
+
+.category__not-found {
+  background: color-mix(in srgb, var(--color-text-muted) 10%, transparent);
+  border: 1px solid var(--color-border);
+}
+
+.category__error {
+  background: color-mix(in srgb, var(--color-error) 10%, transparent);
+  border: 1px solid var(--color-error);
+}
+
+.category__not-found-text,
+.category__error-text {
+  margin: 0;
+  font-size: var(--text-body);
+}
+
+.category__not-found-text {
+  color: var(--color-text-muted);
+}
+
+.category__error-text {
+  color: var(--color-error);
+}

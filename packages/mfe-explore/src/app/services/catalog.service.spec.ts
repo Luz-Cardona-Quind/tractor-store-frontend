@@ -2,7 +2,7 @@ import { TestBed } from '@angular/core/testing';
 import { HttpClient, provideHttpClient } from '@angular/common/http';
 import { HttpTestingController, provideHttpClientTesting } from '@angular/common/http/testing';
 import { EXPLORE_API_URL } from 'shared-catalog';
-import type { HomeResponse } from 'shared-catalog';
+import type { CategoryResponse, HomeResponse } from 'shared-catalog';
 import { CatalogService } from './catalog.service';
 
 const MOCK_API_URL = 'http://localhost:8080/explore/api';
@@ -89,5 +89,44 @@ describe('CatalogService', () => {
     httpTesting
       .expectOne(`${MOCK_API_URL}/home`)
       .flush('Server Error', { status: 500, statusText: 'Internal Server Error' });
+  });
+
+  describe('getCategory()', () => {
+    const MOCK_CATEGORY: CategoryResponse = {
+      category: { id: 'c1', name: 'Tractores de campo', slug: 'campo', imageUrl: '/img/campo.jpg' },
+      products: [
+        { id: 'p1', name: 'TractorMax 3000', category: 'campo', price: 45000, images: ['/img/t1.jpg'] },
+      ],
+      filters: [],
+      total: 1,
+    };
+
+    it('should GET /category/:slug with the correct URL', () => {
+      service.getCategory('campo').subscribe();
+      const req = httpTesting.expectOne(`${MOCK_API_URL}/category/campo`);
+      expect(req.request.method).toBe('GET');
+      req.flush(MOCK_CATEGORY);
+    });
+
+    it('should return typed CategoryResponse on success', (done) => {
+      service.getCategory('campo').subscribe((res) => {
+        expect(res.category.slug).toBe('campo');
+        expect(res.products).toHaveLength(1);
+        done();
+      });
+      httpTesting.expectOne(`${MOCK_API_URL}/category/campo`).flush(MOCK_CATEGORY);
+    });
+
+    it('should propagate 404 without catching it', (done) => {
+      service.getCategory('inexistente').subscribe({
+        error: (err) => {
+          expect(err).toBeDefined();
+          done();
+        },
+      });
+      httpTesting
+        .expectOne(`${MOCK_API_URL}/category/inexistente`)
+        .flush('Not Found', { status: 404, statusText: 'Not Found' });
+    });
   });
 });
