@@ -2,11 +2,13 @@ import {
   ChangeDetectionStrategy,
   Component,
   DestroyRef,
+  computed,
   inject,
 } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { takeUntilDestroyed, toSignal } from '@angular/core/rxjs-interop';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { map } from 'rxjs/operators';
+import { RouterLink } from '@angular/router';
 import { TsProductCardComponent } from 'ts-design-system';
 import { CatalogFacadeService } from '../../services/catalog-facade.service';
 
@@ -23,7 +25,7 @@ const SKELETON_COUNT = 8;
 @Component({
   selector: 'explore-category',
   standalone: true,
-  imports: [TsProductCardComponent],
+  imports: [TsProductCardComponent, RouterLink],
   templateUrl: './category.component.html',
   styleUrl: './category.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -40,18 +42,19 @@ export class CategoryComponent {
   protected readonly error = this.facade.error;
   protected readonly notFound = this.facade.notFound;
   protected readonly activeFilterCount = this.facade.activeFilterCount;
+  protected readonly categories = this.facade.categories;
 
   protected readonly pricePresets = PRICE_PRESETS;
   protected readonly skeletons = Array.from({ length: SKELETON_COUNT }, (_, i) => i);
 
-  protected readonly currentMaxPrice = toSignal(
-    this.route.queryParamMap.pipe(
-      map((p) => (p.get('maxPrice') ? Number(p.get('maxPrice')) : null)),
-    ),
-    { initialValue: null },
-  );
+  // Refleja activeFilters del store: se actualiza cuando el constructor sincroniza los query params
+  protected readonly currentMaxPrice = computed(() => this.facade.activeFilters().maxPrice ?? null);
 
   constructor() {
+    if (this.facade.categories().length === 0) {
+      this.facade.loadHome();
+    }
+
     // Recarga al cambiar de slug (navegación entre categorías)
     this.route.paramMap
       .pipe(

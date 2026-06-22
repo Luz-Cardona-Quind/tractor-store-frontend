@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300">
+  <rect width="400" height="300" fill="#0d1b2e"/>
+  <rect y="245" width="400" height="55" fill="#061020"/>
+  <circle cx="276" cy="208" r="64" fill="#1a1a1a"/>
+  <circle cx="276" cy="208" r="51" fill="#262626"/>
+  <line x1="276" y1="157" x2="276" y2="259" stroke="#383838" stroke-width="5"/>
+  <line x1="225" y1="208" x2="327" y2="208" stroke="#383838" stroke-width="5"/>
+  <line x1="240" y1="172" x2="312" y2="244" stroke="#383838" stroke-width="5"/>
+  <line x1="312" y1="172" x2="240" y2="244" stroke="#383838" stroke-width="5"/>
+  <circle cx="276" cy="208" r="14" fill="#404040"/>
+  <rect x="110" y="150" width="192" height="70" rx="4" fill="#0d47a1"/>
+  <rect x="50" y="168" width="95" height="52" rx="5" fill="#01579b"/>
+  <rect x="83" y="135" width="10" height="38" rx="3" fill="#4a4a4a"/>
+  <rect x="168" y="103" width="100" height="67" rx="5" fill="#1565c0"/>
+  <rect x="176" y="113" width="36" height="26" rx="3" fill="#b3e5fc" opacity="0.8"/>
+  <rect x="222" y="113" width="36" height="26" rx="3" fill="#b3e5fc" opacity="0.8"/>
+  <circle cx="93" cy="220" r="29" fill="#1a1a1a"/>
+  <circle cx="93" cy="220" r="20" fill="#262626"/>
+  <circle cx="93" cy="220" r="7" fill="#404040"/>
+  <rect y="258" width="400" height="42" fill="rgba(0,0,0,0.5)"/>
+  <text x="200" y="284" text-anchor="middle" fill="white" font-family="Arial,Helvetica,sans-serif" font-size="16" font-weight="bold">Tractores Industriales</text>
+</svg>

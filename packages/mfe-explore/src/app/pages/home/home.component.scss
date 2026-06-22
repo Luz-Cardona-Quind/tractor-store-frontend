@@ -26,7 +26,7 @@
   font-size: var(--text-heading-sm);
   font-weight: var(--font-semibold);
   color: var(--color-text);
-  margin: 0 0 var(--space-element) 0;
+  margin: var(--space-element) 0 var(--space-element) 0;
 }
 
 .home__grid {

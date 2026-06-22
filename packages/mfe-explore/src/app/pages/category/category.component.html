@@ -9,6 +9,20 @@
       <p class="category__error-text">{{ error() }}</p>
     </div>
   } @else {
+    @if (categories().length > 0) {
+      <nav class="category__nav" aria-label="Categorías">
+        @for (cat of categories(); track cat.id) {
+          <a
+            class="category__nav-link"
+            [class.category__nav-link--active]="cat.slug === activeCategory()?.slug"
+            [routerLink]="['/category', cat.slug]"
+          >
+            {{ cat.name }}
+          </a>
+        }
+      </nav>
+    }
+
     <header class="category__header">
       <h1 class="category__title">
         {{ activeCategory()?.name ?? '&nbsp;' }}
