@@ -1,0 +1,23 @@
+<div class="recommendations">
+  @if (showSkeletons) {
+    <div class="recommendations__track">
+      @for (i of skeletons; track i) {
+        <div class="recommendations__item">
+          <ts-product-card [product]="placeholder" [showPrice]="false" [loading]="true" />
+        </div>
+      }
+    </div>
+  } @else if (products.length > 0) {
+    <div class="recommendations__track">
+      @for (product of products; track product.id) {
+        <div class="recommendations__item">
+          <ts-product-card
+            [product]="product"
+            [showPrice]="true"
+            (productSelected)="productSelected.emit($event)"
+          />
+        </div>
+      }
+    </div>
+  }
+</div>

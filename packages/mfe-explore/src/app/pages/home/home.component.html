@@ -1,0 +1,36 @@
+<div class="home">
+  @if (error()) {
+    <div class="home__error" role="alert" aria-live="assertive">
+      <p class="home__error-text">{{ error() }}</p>
+    </div>
+  }
+
+  <section class="home__section" aria-labelledby="categories-title">
+    <h2 id="categories-title" class="home__section-title">Categorías</h2>
+
+    <div class="home__grid">
+      @if (showCategorySkeletons()) {
+        @for (i of skeletons; track i) {
+          <ts-product-card [product]="placeholder" [showPrice]="false" [loading]="true" />
+        }
+      } @else {
+        @for (cat of categories(); track cat.id) {
+          <ts-product-card
+            [product]="categoryToCard(cat)"
+            [showPrice]="false"
+            (productSelected)="navigateToCategory($event)"
+          />
+        }
+      }
+    </div>
+  </section>
+
+  <section class="home__section" aria-labelledby="recommendations-title">
+    <h2 id="recommendations-title" class="home__section-title">Recomendados</h2>
+    <explore-recommendations
+      [products]="recommendations()"
+      [loading]="isLoading()"
+      (productSelected)="navigateToProduct($event)"
+    />
+  </section>
+</div>
