@@ -1,6 +1,15 @@
-<nav class="remote-menu">
-  <a routerLink="/">Home</a>
-  <a routerLink="/stores">Tiendas</a>
-  <a routerLink="/cart">Carrito</a>
-</nav>
-<router-outlet></router-outlet>
+@if (headerComponent(); as comp) {
+  <ng-container *ngComponentOutlet="comp" />
+} @else if (headerFailed()) {
+  <shell-header-fallback />
+}
+
+<main class="shell-main">
+  <router-outlet />
+</main>
+
+@if (footerComponent(); as comp) {
+  <ng-container *ngComponentOutlet="comp" />
+} @else if (footerFailed()) {
+  <shell-footer-fallback />
+}
