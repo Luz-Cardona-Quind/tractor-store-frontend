@@ -1,5 +1,5 @@
 import { Injectable, inject } from '@angular/core';
-import type { AppError, FilterState, Result } from 'shared-catalog';
+import type { AppError, FilterState, Result, Store } from 'shared-catalog';
 import { CatalogStore } from './catalog.store';
 import { CatalogService } from '../services/catalog.service';
 
@@ -94,5 +94,13 @@ export class CatalogActions {
   /** Elimina todos los filtros activos. */
   clearFilters(): void {
     this.store.update((s) => ({ ...s, activeFilters: {} }));
+  }
+
+  /**
+   * Persiste la tienda seleccionada como preferida en el estado.
+   * @param store Tienda elegida por el usuario.
+   */
+  selectStore(store: Store): void {
+    this.store.update((s) => ({ ...s, selectedStore: store }));
   }
 }

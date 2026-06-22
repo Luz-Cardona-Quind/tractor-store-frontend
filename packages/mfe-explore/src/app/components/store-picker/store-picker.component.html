@@ -1,0 +1,25 @@
+<article
+  class="store-picker"
+  [class.store-picker--selected]="selected"
+  [attr.aria-current]="selected ? 'true' : null"
+>
+  <div class="store-picker__info">
+    <h3 class="store-picker__name">{{ store.name }}</h3>
+    <p class="store-picker__address">{{ store.address }}</p>
+    <p class="store-picker__hours">Lun–Sáb 8:00–18:00</p>
+  </div>
+
+  <button
+    class="store-picker__btn"
+    type="button"
+    (click)="onSelect()"
+    [attr.aria-pressed]="selected"
+  >
+    @if (selected) {
+      <span class="store-picker__check" aria-hidden="true">✓</span>
+      Mi tienda
+    } @else {
+      Seleccionar
+    }
+  </button>
+</article>

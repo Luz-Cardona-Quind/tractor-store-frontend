@@ -43,6 +43,11 @@ export class CatalogSelectors {
     ).length,
   );
 
+  // ── Stores page ─────────────────────────────────────────────────────────────
+
+  /** Tienda física seleccionada como preferida, o null. */
+  readonly selectedStore = computed(() => this.store.snapshot().selectedStore);
+
   // ── UI ──────────────────────────────────────────────────────────────────────
 
   /** Indica si hay una carga de datos en progreso. */

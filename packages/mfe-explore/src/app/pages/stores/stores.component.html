@@ -1,0 +1,34 @@
+<div class="stores">
+  <h1 class="stores__title">Nuestras Tiendas</h1>
+  <p class="stores__subtitle">Visítanos y conoce nuestra flota de tractores en persona.</p>
+
+  @if (error()) {
+    <div class="stores__error" role="alert" aria-live="assertive">
+      <p class="stores__error-text">{{ error() }}</p>
+    </div>
+  }
+
+  <div class="stores__list">
+    @if (isLoading()) {
+      @for (i of skeletons; track i) {
+        <div class="stores__skeleton" aria-busy="true" aria-label="Cargando tienda"></div>
+      }
+    } @else if (stores().length === 0) {
+      <p class="stores__empty">No hay tiendas disponibles en este momento.</p>
+    } @else {
+      @for (store of stores(); track store.id) {
+        <explore-store-picker
+          [store]="store"
+          [selected]="selectedStore()?.id === store.id"
+          (storeSelected)="onStoreSelected($event)"
+        />
+      }
+    }
+  </div>
+
+  @if (selectedStore()) {
+    <p class="stores__selected-hint" role="status">
+      Tu tienda seleccionada: <strong>{{ selectedStore()!.name }}</strong>
+    </p>
+  }
+</div>

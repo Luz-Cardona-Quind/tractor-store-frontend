@@ -11,6 +11,8 @@ export interface CatalogState {
   categoryProducts: ProductSummary[];
   activeFilters: FilterState;
   notFound: boolean;
+  // Stores page
+  selectedStore: Store | null;
   // UI
   loading: boolean;
   error: string | null;
@@ -24,6 +26,7 @@ const INITIAL_STATE: CatalogState = {
   categoryProducts: [],
   activeFilters: {},
   notFound: false,
+  selectedStore: null,
   loading: false,
   error: null,
 };

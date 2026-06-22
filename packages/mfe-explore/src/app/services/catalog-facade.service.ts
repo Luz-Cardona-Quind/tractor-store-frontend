@@ -1,5 +1,7 @@
 import { Injectable, inject } from '@angular/core';
-import type { FilterState } from 'shared-catalog';
+import { DOCUMENT } from '@angular/common';
+import type { FilterState, Store } from 'shared-catalog';
+import { dispatchStoreSelected } from 'shared-catalog';
 import { CatalogSelectors } from '../store/catalog.selectors';
 import { CatalogActions } from '../store/catalog.actions';
 
@@ -11,6 +13,7 @@ import { CatalogActions } from '../store/catalog.actions';
 export class CatalogFacadeService {
   private readonly selectors = inject(CatalogSelectors);
   private readonly actions = inject(CatalogActions);
+  private readonly document = inject(DOCUMENT);
 
   // ── Home ────────────────────────────────────────────────────────────────────
 
@@ -19,6 +22,9 @@ export class CatalogFacadeService {
 
   /** Productos recomendados. */
   readonly recommendations = this.selectors.recommendations;
+
+  /** Tiendas físicas disponibles. */
+  readonly stores = this.selectors.stores;
 
   // ── Category page ───────────────────────────────────────────────────────────
 
@@ -36,6 +42,13 @@ export class CatalogFacadeService {
 
   /** Indica si la categoría solicitada no fue encontrada. */
   readonly notFound = this.selectors.notFound;
+
+  // ── UI ──────────────────────────────────────────────────────────────────────
+
+  // ── Stores page ─────────────────────────────────────────────────────────────
+
+  /** Tienda seleccionada como preferida, o null. */
+  readonly selectedStore = this.selectors.selectedStore;
 
   // ── UI ──────────────────────────────────────────────────────────────────────
 
@@ -71,5 +84,14 @@ export class CatalogFacadeService {
   /** Elimina todos los filtros activos. */
   clearFilters(): void {
     this.actions.clearFilters();
+  }
+
+  /**
+   * Persiste la tienda seleccionada y despacha el evento cross-MFE.
+   * @param store Tienda elegida por el usuario.
+   */
+  selectStore(store: Store): void {
+    this.actions.selectStore(store);
+    dispatchStoreSelected(this.document, { storeId: store.id, storeName: store.name });
   }
 }
