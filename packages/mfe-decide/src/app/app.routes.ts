@@ -1,6 +1,7 @@
 import { Route } from '@angular/router';
-import { RemoteEntryComponent } from './remote-entry/entry.component';
+import { ProductComponent } from './pages/product/product.component';
 
 export const appRoutes: Route[] = [
-  { path: '', component: RemoteEntryComponent },
+  { path: 'product/:id', component: ProductComponent },
+  { path: '', redirectTo: 'product/1', pathMatch: 'full' },
 ];

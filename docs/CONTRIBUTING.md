@@ -36,7 +36,7 @@ pnpm storybook
 
 | Tipo | Patrón | Ejemplo |
 |------|--------|---------|
-| Feature | `feat/nombre-descriptivo` | `feat/catalog-store-signals` |
+| Feature | `feature/nombre-descriptivo` | `feature/catalog-store-signals` |
 | Fix | `fix/nombre-descriptivo` | `fix/minicart-shadow-dom-event` |
 | Docs | `docs/nombre-descriptivo` | `docs/adr-module-federation` |
 | Test | `test/nombre-descriptivo` | `test/cart-store-coverage` |
@@ -46,7 +46,7 @@ pnpm storybook
 Usamos **Conventional Commits**:
 
 ```
-feat: descripción de la nueva funcionalidad
+feature: descripción de la nueva funcionalidad
 fix: descripción del bug corregido
 docs: cambios en documentación
 test: tests nuevos o modificados
