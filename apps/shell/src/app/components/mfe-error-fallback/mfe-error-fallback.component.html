@@ -1,0 +1,16 @@
+<section class="mfe-error" role="alert" aria-live="assertive">
+  <div class="mfe-error__container">
+    <span class="mfe-error__icon" aria-hidden="true">⚠️</span>
+    <h2 class="mfe-error__title">{{ mfeName }} no está disponible</h2>
+    <p class="mfe-error__message">
+      Esta sección no está disponible. Intenta de nuevo.
+    </p>
+    <button
+      class="mfe-error__retry"
+      type="button"
+      (click)="retry()"
+    >
+      Intentar de nuevo
+    </button>
+  </div>
+</section>

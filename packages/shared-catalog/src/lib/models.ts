@@ -45,3 +45,10 @@ export interface Store {
 export type Result<T, E = Error> =
   | { ok: true; data: T }
   | { ok: false; error: E };
+
+export interface AppError {
+  /** Mensaje en español orientado al usuario final. */
+  message: string;
+  /** Código HTTP de origen, si aplica. */
+  statusCode?: number;
+}

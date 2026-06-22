@@ -1,0 +1,50 @@
+.mfe-error {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 40vh;
+  padding: var(--space-section);
+}
+
+.mfe-error__container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-element);
+  max-width: 400px;
+  text-align: center;
+}
+
+.mfe-error__icon {
+  font-size: var(--text-4xl);
+}
+
+.mfe-error__title {
+  font-size: var(--text-heading-sm);
+  font-weight: var(--font-semibold);
+  color: var(--color-text);
+  margin: 0;
+}
+
+.mfe-error__message {
+  font-size: var(--text-body);
+  color: var(--color-text-muted);
+  margin: 0;
+}
+
+.mfe-error__retry {
+  margin-top: var(--space-element);
+  padding: var(--button-padding-y) var(--button-padding-x);
+  background: var(--button-bg);
+  color: var(--button-color);
+  border: var(--button-border-width) solid var(--button-border-color);
+  border-radius: var(--button-radius);
+  font-size: var(--button-font-size);
+  font-weight: var(--button-font-weight);
+  cursor: pointer;
+  transition: background var(--button-transition);
+
+  &:hover {
+    background: var(--button-bg-hover);
+  }
+}
