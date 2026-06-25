@@ -10,7 +10,7 @@
   scroll-snap-type: x mandatory;
 
   &::-webkit-scrollbar {
-    height: 4px;
+    height: var(--space-1);
   }
 
   &::-webkit-scrollbar-track {

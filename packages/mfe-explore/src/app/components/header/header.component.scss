@@ -52,6 +52,6 @@
   &--active {
     color: var(--color-primary);
     font-weight: var(--font-semibold);
-    border-bottom: 2px solid var(--color-primary);
+    border-bottom: var(--border-2) solid var(--color-primary);
   }
 }

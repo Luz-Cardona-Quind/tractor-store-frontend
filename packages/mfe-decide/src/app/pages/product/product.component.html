@@ -1,0 +1,117 @@
+@if (facade.isLoading()) {
+  <div class="decide-product__skeleton" aria-busy="true" aria-label="Cargando producto">
+    <div class="decide-product__skeleton-gallery"></div>
+    <div class="decide-product__skeleton-body">
+      <div class="decide-product__skeleton-line decide-product__skeleton-line--title"></div>
+      <div class="decide-product__skeleton-line decide-product__skeleton-line--price"></div>
+      <div class="decide-product__skeleton-line decide-product__skeleton-line--desc"></div>
+    </div>
+  </div>
+}
+
+@if (facade.error()) {
+  <div class="decide-product__error" role="alert">
+    <p class="decide-product__error-message">{{ facade.error() }}</p>
+    <ts-button variant="secondary" (clicked)="retry()">Intentar de nuevo</ts-button>
+  </div>
+}
+
+@if (facade.product(); as product) {
+  <article class="decide-product" [attr.aria-label]="product.name">
+
+    <!-- Galería de imágenes -->
+    <section class="decide-product__gallery" aria-label="Galería de imágenes">
+      <img
+        class="decide-product__main-image"
+        [src]="activeImage()"
+        [alt]="product.name"
+        (error)="onImageError($event)"
+      />
+      @if (product.images.length > 1) {
+        <ul class="decide-product__thumbnails" aria-label="Miniaturas">
+          @for (img of product.images; track img; let i = $index) {
+            <li>
+              <button
+                class="decide-product__thumb-btn"
+                [class.decide-product__thumb-btn--active]="activeImageIndex() === i"
+                type="button"
+                [attr.aria-label]="'Ver ' + (i + 1) + ' de ' + product.images.length"
+                (click)="setActiveImage(i)"
+              >
+                <img
+                  class="decide-product__thumbnail"
+                  [src]="img"
+                  [alt]="product.name + ' — ' + (i + 1)"
+                  loading="lazy"
+                  (error)="onImageError($event)"
+                />
+              </button>
+            </li>
+          }
+        </ul>
+      }
+    </section>
+
+    <!-- Datos del producto -->
+    <section class="decide-product__info">
+      <h1 class="decide-product__name">{{ product.name }}</h1>
+
+      <p class="decide-product__price" aria-label="Precio">
+        {{ product.price | currency:'USD':'symbol':'1.0-0' }}
+      </p>
+
+      <p class="decide-product__description">
+        Tractor de categoría <strong>{{ product.category }}</strong>.
+        Disponible en {{ product.variants.length }} configuración{{ product.variants.length !== 1 ? 'es' : '' }}.
+      </p>
+
+      <!-- Selector de variantes -->
+      @if (product.variants.length > 0) {
+        <fieldset class="decide-product__variants">
+          <legend class="decide-product__variants-label">Selección de variante</legend>
+          @if (facade.selectedVariant(); as v) {
+            <p class="decide-product__selected-variant-info" aria-live="polite">
+              {{ v.color }} — {{ v.size }}
+              @if (v.stock === 0) {
+                <span class="decide-product__badge decide-product__badge--out-of-stock">Sin stock</span>
+              } @else {
+                <span class="decide-product__badge decide-product__badge--stock">
+                  {{ v.stock }} disponibles
+                </span>
+              }
+            </p>
+          }
+
+          <div class="decide-product__variant-list">
+            @for (variant of product.variants; track variant.sku) {
+              <ts-variant-option
+                [label]="variant.color + ' / ' + variant.size"
+                [value]="variant.sku"
+                [selected]="facade.selectedSku() === variant.sku"
+                [disabled]="variant.stock === 0"
+                (optionSelected)="onVariantSelected($event)"
+              />
+            }
+          </div>
+        </fieldset>
+      }
+
+      <!-- Botón añadir al carrito -->
+      <ts-button
+        class="decide-product__add-btn"
+        variant="primary"
+        size="lg"
+        [disabled]="!facade.canAddToCart()"
+        (clicked)="addToCart()"
+      >
+        @if (facade.isOutOfStock()) { Sin stock } @else { Añadir al carrito }
+      </ts-button>
+    </section>
+  </article>
+
+  <!-- Recomendaciones via Module Federation (slot dinámico) -->
+  <section class="decide-product__recommendations" aria-label="Productos recomendados">
+    <h2 class="decide-product__recommendations-title">También te puede interesar</h2>
+    <ng-container #recommendationsSlot />
+  </section>
+}
